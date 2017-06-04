@@ -29,3 +29,12 @@ function zm_apai_get_product_by_asin($asin) {
 		
 	return $product;
 }
+
+// executed when plugin is de-activated
+register_deactivation_hook( __FILE__, 'zm_apai_deactivate' );
+function zm_apai_deactivate() {
+    
+    // unregister setting fields
+    unregister_setting( 'zm_apai-options', 'zm_apai-show-link');
+    
+}
