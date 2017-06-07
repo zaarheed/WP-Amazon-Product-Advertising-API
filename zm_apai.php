@@ -36,6 +36,9 @@ function zm_apai_deactivate() {
     
     // unregister setting fields
     unregister_setting( 'zm_apai-options', 'zm_apai-show-link');
+    unregister_setting( 'zm_apai-options', 'zm_apai-aws-access-key');
+    unregister_setting( 'zm_apai-options', 'zm_apai-aws-secret-key');
+    unregister_setting( 'zm_apai-options', 'zm_apai-associate-tag');
 }
 
 

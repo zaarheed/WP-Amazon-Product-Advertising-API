@@ -18,19 +18,43 @@ function zm_apai_admin_init() {
     
     // register the setting field
     register_setting($group, 'zm_apai-show-link'); // must match 'name' field on input element
+    register_setting($group, 'zm_apai-aws-access-key'); // must match 'name' field on input element
+    register_setting($group, 'zm_apai-aws-secret-key'); // must match 'name' field on input element
+    register_setting($group, 'zm_apai-associate-tag'); // must match 'name' field on input element
     
     // add setting field to the section
     add_settings_field(
-        'general', // name of the section to which you want to add a field
+        'zm_apai-show-link', // name of the section to which you want to add a field
         'Automatically display below post', // title for that settings field
         'zm_apai_show_link_render', // function that will render the field
         $page,
         'zm_apai-general' // section name
     );
+    
+    add_settings_field(
+        'zm_apai-aws-access-key', // name of the section to which you want to add a field
+        'AWS Access Key', // title for that settings field
+        'zm_apai_aws_access_key_render', // function that will render the field
+        $page,
+        'zm_apai-general' // section name
+    );
+    
+    add_settings_field(
+        'zm_apai-aws-secret-key', // name of the section to which you want to add a field
+        'AWS Secret Key', // title for that settings field
+        'zm_apai_aws_secret_key_render', // function that will render the field
+        $page,
+        'zm_apai-general' // section name
+    );
+    
+    add_settings_field(
+        'zm_apai-associate-tag', // name of the section to which you want to add a field
+        'Associate Tag', // title for that settings field
+        'zm_apai_associate_tag_render', // function that will render the field
+        $page,
+        'zm_apai-general' // section name
+    );
 }
-
-
-
 
 
 
@@ -45,6 +69,39 @@ function zm_apai_show_link_render() {
     }
     else {
         echo '<input type="checkbox" name="zm_apai-show-link" value="below-post" />';
+    }
+}
+
+// renders the input box for 'aws access key'
+function zm_apai_aws_access_key_render() {
+    
+    if (esc_attr( get_option("zm_apai-aws-access-key") ) != "") {
+        echo '<input type="text" name="zm_apai-aws-access-key" value="' . esc_attr( get_option("zm_apai-aws-access-key") ) . '" />';
+    }
+    else {
+        echo '<input type="text" name="zm_apai-aws-access-key" />';
+    }
+}
+
+// renders the input box for 'aws secret key'
+function zm_apai_aws_secret_key_render() {
+    
+    if (esc_attr( get_option("zm_apai-aws-secret-key") ) != "") {
+        echo '<input type="text" name="zm_apai-aws-secret-key" value="' . esc_attr( get_option("zm_apai-aws-secret-key") ) . '" />';
+    }
+    else {
+        echo '<input type="text" name="zm_apai-aws-secret-key" />';
+    }
+}
+
+// renders the input box for 'associate tag'
+function zm_apai_associate_tag_render() {
+    
+    if (esc_attr( get_option("zm_apai-associate-tag") ) != "") {
+        echo '<input type="text" name="zm_apai-associate-tag" value="' . esc_attr( get_option("zm_apai-associate-tag") ) . '" />';
+    }
+    else {
+        echo '<input type="text" name="zm_apai-associate-tag" />';
     }
 }
 
