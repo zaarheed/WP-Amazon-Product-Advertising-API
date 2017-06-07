@@ -34,7 +34,6 @@ function zm_apai_admin_init() {
 
 
 
-
 // renders the input box for 'show link automatically'
 function zm_apai_show_link_render() {
     

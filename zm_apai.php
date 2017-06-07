@@ -3,7 +3,7 @@
 	Plugin Name: Amazon Product Advertising API
 	Description: Interacts with the Amazon Product Advertising API via values stored in Custom Fields
 	Author: Zahid Mahmood
-	Version: 1.0
+	Version: 0.1
 	Author URI: http://www.zahidmahmood.co.uk
 */
 
@@ -28,4 +28,34 @@ function zm_apai_get_product_by_asin($asin) {
 		);
 		
 	return $product;
+}
+
+// executed when plugin is de-activated
+register_deactivation_hook( __FILE__, 'zm_apai_deactivate' );
+function zm_apai_deactivate() {
+    
+    // unregister setting fields
+    unregister_setting( 'zm_apai-options', 'zm_apai-show-link');
+}
+
+
+if (esc_attr( get_option("zm_apai-show-link") ) == "below-post") {
+	add_filter('the_content', 'zm_apai_append_content');
+	function zm_apai_append_content($content) {
+		
+		global $post; // need this so we can access custom fields
+		
+		$asin = get_post_meta( $post->ID, 'apai_asin', true );
+		
+		if ($asin != '' && function_exists('zm_apai_get_product_by_asin')) {
+		
+			$product = zm_apai_get_product_by_asin($asin);
+			
+			$aftercontent = zm_apai_get_html_after_post($product);
+		
+			$fullcontent = $content . $aftercontent;
+			
+			return $fullcontent;
+		}
+	}
 }

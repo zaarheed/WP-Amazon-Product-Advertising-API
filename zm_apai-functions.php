@@ -1,13 +1,5 @@
 <?php
 
-function zm_apai_test_function() {
-    $url = zm_apai_create_signed_url('B018Y224SG');
-    
-    $xml = zm_apai_parse_xml($url);
-    
-    return $xml;
-}
-
 function zm_apai_create_signed_url($asin) {
     
     $aws_access_key_id = "AKIAJX5X5MWUBSDCHPVA";
@@ -68,4 +60,8 @@ function zm_apai_parse_xml($url) {
     $xml = simplexml_load_string($xml);
     
     return $xml;
+}
+
+function zm_apai_get_html_after_post($product) {
+    return '<div><a href="' . $product['url'] .'">Buy ' . $product['name'] . 'on Amazon for' . $product['fprice'] .'</a>';
 }
