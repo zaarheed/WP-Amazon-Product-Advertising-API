@@ -29,7 +29,7 @@ The automatic link at the bottom of the post content is currently non-configurab
 
 The following example code can be added to `single.php`. A full API documentation will be added here soon.
 
-`
+```
 <?php
     if (get_post_meta( $post->ID, 'apai_asin', true ) != '' && function_exists('zm_apai_get_product_by_asin')) {
     
@@ -42,4 +42,4 @@ The following example code can be added to `single.php`. A full API documentatio
         </div>
                     
 <?php } ?>
-`
+```
