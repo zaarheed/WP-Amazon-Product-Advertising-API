@@ -10,6 +10,10 @@ Features
 * Perfect balance of user-friendly and developer-friendly
 * Actively used by myself so features in the pipeline reflect real-world needs
 
+Background
+--------
+The idea was to build a super-simple and lightweight plugin which could be used to power Amazon Product Advertising API integration on my [technology blog](https://www.technouz.com). Once I got the basics working, I realised there may be demand for this sort of plugin from other WordPress developers or users. Therefore, the project took a turn and is now focused on providing the perfect balance between an Amazon Product Advertising API framework for developers, and a full-featured plugin for end users.
+
 Installation
 -------------------------
 This plugin has not yet been published to the WordPress plugin repository.
@@ -19,7 +23,7 @@ This plugin has not yet been published to the WordPress plugin repository.
 3. Navigate to the plugin settings page at Settings > APAI
 4. Enter your AWS Access Key, AWS Secret Key and Amazon Associate Tag ID and click Save Changes.
 
-Usage
+End Users
 -------------------------
 From the plugin settings page enable the option to 'Automatically display below post'. Then enter the ASIN in the metabox on the post editor page and links will automatically appear at the bottom of each post. The link will contain your Amazon Associate Tag as entered in the plugin settings page.
 
@@ -43,3 +47,11 @@ The following example code can be added to `single.php`. A full API documentatio
                     
 <?php } ?>
 ```
+
+Roadmap
+--------
+[] Support for Amazon channels other than the UK
+[] Support for multiple Amazon channels simultaneously
+[] Multiple products attached to a single post
+[x] Automatically add the product link to the post
+[] Allow users to customise the product link automatically added to the post
