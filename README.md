@@ -50,8 +50,8 @@ The following example code can be added to `single.php`. A full API documentatio
 
 Roadmap
 --------
-[] Support for Amazon channels other than the UK
-[] Support for multiple Amazon channels simultaneously
-[] Multiple products attached to a single post
-[x] Automatically add the product link to the post
-[] Allow users to customise the product link automatically added to the post
+- Support for Amazon channels other than the UK
+- Support for multiple Amazon channels simultaneously
+- Multiple products attached to a single post
+- Automatically add the product link to the post
+- Allow users to customise the product link automatically added to the post
