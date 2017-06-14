@@ -23,6 +23,10 @@ This plugin has not yet been published to the WordPress plugin repository.
 3. Navigate to the plugin settings page at Settings > APAI
 4. Enter your AWS Access Key, AWS Secret Key and Amazon Associate Tag ID and click Save Changes.
 
+
+Usage
+=========================
+
 End Users
 -------------------------
 From the plugin settings page enable the option to 'Automatically display below post'. Then enter the ASIN in the metabox on the post editor page and links will automatically appear at the bottom of each post. The link will contain your Amazon Associate Tag as entered in the plugin settings page.
@@ -55,3 +59,4 @@ Roadmap
 - Multiple products attached to a single post
 - Automatically add the product link to the post
 - Allow users to customise the product link automatically added to the post
+
