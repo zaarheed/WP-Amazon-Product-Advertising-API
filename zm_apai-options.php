@@ -21,6 +21,7 @@ function zm_apai_admin_init() {
     register_setting($group, 'zm_apai-aws-access-key'); // must match 'name' field on input element
     register_setting($group, 'zm_apai-aws-secret-key'); // must match 'name' field on input element
     register_setting($group, 'zm_apai-associate-tag'); // must match 'name' field on input element
+    register_setting($group, 'zm_apai-default-channel'); // must match 'name' field on input element
     
     // add setting field to the section
     add_settings_field(
@@ -51,6 +52,14 @@ function zm_apai_admin_init() {
         'zm_apai-associate-tag', // name of the section to which you want to add a field
         'Associate Tag', // title for that settings field
         'zm_apai_associate_tag_render', // function that will render the field
+        $page,
+        'zm_apai-general' // section name
+    );
+    
+    add_settings_field(
+        'zm_apai-default-channel', // name of the section to which you want to add a field
+        'Default Channel', // title for that settings field
+        'zm_apai_default_channel_render', // function that will render the field
         $page,
         'zm_apai-general' // section name
     );
@@ -103,6 +112,17 @@ function zm_apai_associate_tag_render() {
     else {
         echo '<input type="text" name="zm_apai-associate-tag" />';
     }
+}
+
+// renders the input select for 'default channel'
+function zm_apai_default_channel_render() {
+    
+    echo('
+       <select name="zm_apai-default-channel" value="' . esc_attr( get_option("zm_apai-default-channel") ) . '">
+            <option value="UK">United Kingdom</option>
+            <option value="USA">United States</option>
+            <option value="FR">France</option>
+    ');
 }
 
 // create custom plugin settings menu
