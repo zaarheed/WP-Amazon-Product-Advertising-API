@@ -3,7 +3,7 @@
 	Plugin Name: Amazon Product Advertising API
 	Description: Interacts with the Amazon Product Advertising API via values stored in Custom Fields
 	Author: Zahid Mahmood
-	Version: 0.2
+	Version: 0.3
 	Author URI: http://www.zahidmahmood.co.uk
 */
 
