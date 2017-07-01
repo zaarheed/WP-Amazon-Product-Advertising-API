@@ -55,11 +55,18 @@ if (esc_attr( get_option("zm_apai-show-link") ) == "below-post") {
 		
 			$product = zm_apai_get_product_by_asin($asin);
 			
-			$aftercontent = zm_apai_get_html_after_post($product);
-		
-			$fullcontent = $content . $aftercontent;
+			// only return purchase link if the product offer is eligible for Prime
+			if ($product['isEligibleForPrime'] == true) {
+				$aftercontent = zm_apai_get_html_after_post($product);
+				
+				$fullcontent = $content . $aftercontent;
+				
+				return $fullcontent;
+			}
+			else {
+				return $content;
+			}
 			
-			return $fullcontent;
 		}
 	}
 }
