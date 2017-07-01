@@ -22,8 +22,9 @@ function zm_apai_get_product_by_asin($asin) {
 	
 	// build product object
 	$product = array(
+		'isEligibleForPrime' => (boolean)$xml->Items->Item[0]->Offers->Offer->OfferListing->IsEligibleForPrime,
 		'name' => (string)$xml->Items->Item[0]->ItemAttributes->Title,
-		'fprice' => (string)$xml->Items->Item[0]->ItemAttributes->ListPrice->FormattedPrice,
+		'fprice' => (string)$xml->Items->Item[0]->Offers->Offer->OfferListing->Price->FormattedPrice,
 		'url' => (string)$xml->Items->Item[0]->DetailPageURL
 		);
 		
