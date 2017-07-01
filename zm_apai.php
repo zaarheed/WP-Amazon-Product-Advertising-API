@@ -3,7 +3,7 @@
 	Plugin Name: Amazon Product Advertising API
 	Description: Interacts with the Amazon Product Advertising API via values stored in Custom Fields
 	Author: Zahid Mahmood
-	Version: 0.2
+	Version: 0.3
 	Author URI: http://www.zahidmahmood.co.uk
 */
 
@@ -22,8 +22,9 @@ function zm_apai_get_product_by_asin($asin) {
 	
 	// build product object
 	$product = array(
+		'isEligibleForPrime' => (boolean)$xml->Items->Item[0]->Offers->Offer->OfferListing->IsEligibleForPrime,
 		'name' => (string)$xml->Items->Item[0]->ItemAttributes->Title,
-		'fprice' => (string)$xml->Items->Item[0]->ItemAttributes->ListPrice->FormattedPrice,
+		'fprice' => (string)$xml->Items->Item[0]->Offers->Offer->OfferListing->Price->FormattedPrice,
 		'url' => (string)$xml->Items->Item[0]->DetailPageURL
 		);
 		
@@ -54,11 +55,18 @@ if (esc_attr( get_option("zm_apai-show-link") ) == "below-post") {
 		
 			$product = zm_apai_get_product_by_asin($asin);
 			
-			$aftercontent = zm_apai_get_html_after_post($product);
-		
-			$fullcontent = $content . $aftercontent;
+			// only return purchase link if the product offer is eligible for Prime
+			if ($product['isEligibleForPrime'] == true) {
+				$aftercontent = zm_apai_get_html_after_post($product);
+				
+				$fullcontent = $content . $aftercontent;
+				
+				return $fullcontent;
+			}
+			else {
+				return $content;
+			}
 			
-			return $fullcontent;
 		}
 	}
 }
